@@ -853,19 +853,10 @@ class SecureApplicationConnector(BaseConnector):
         if token is None:
             token = self._get_authentication_token(self._base_url, self._account_id, self._api_key, self._api_secret)
 
-        if debug:
-            return {
-                "X-Argento-User": "Argento-UI",
-                "X-Argento-Roles": "superuser",
-                "X-Argento-Tenant": token,
-                "X-Appd-Permissions": "CONFIG_ARGENTO",
-                "Content-Type": "application/json"
-            }
-        else:
-            return {
-                "Authorization": f"Bearer {token}",
-                "Content-Type": "application/json"
-            }
+        return {
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json"
+        }
 
 
 def main():
